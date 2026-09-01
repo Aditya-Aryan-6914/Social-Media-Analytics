@@ -30,7 +30,7 @@ def predict():
     if text is None or not str(text).strip():
         return jsonify({"error": "Text is required."}), 400
 
-    result = model.predict_sentiment_batch()([str(text)])[0]
+    result = model.predict_sentiment_batch([str(text)])[0]
     return jsonify({
         "status": "success",
         "input": str(text),

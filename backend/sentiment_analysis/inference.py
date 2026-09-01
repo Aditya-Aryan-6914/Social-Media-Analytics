@@ -1,11 +1,13 @@
-from .load_models import sentiment_pipeline
+from functools import cached_property
+from .load_models import load_sentiment_pipeline
 from .preprocessing import clean_texts
 from .config import MAX_LENGTH, BATCH_SIZE
 
 
 class SentimentModel:
-    def __init__(self):
-        self.pipeline = sentiment_pipeline
+    @cached_property
+    def pipeline(self):
+        return load_sentiment_pipeline()
 
     # Format the predictions returned by the sentiment pipeline into a structured dictionary.
     def _format_prediction(self, predictions: list[dict]) -> dict:
