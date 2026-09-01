@@ -1,12 +1,13 @@
 from .load_models import sentiment_pipeline
 from .preprocessing import clean_texts
+from .config import MAX_LENGTH, BATCH_SIZE
 
 
 class SentimentModel:
     def __init__(self):
         self.pipeline = sentiment_pipeline
 
-# Format the predictions returned by the sentiment pipeline into a structured dictionary.
+    # Format the predictions returned by the sentiment pipeline into a structured dictionary.
     def _format_prediction(self, predictions: list[dict]) -> dict:
         best_prediction = max(
             predictions,
